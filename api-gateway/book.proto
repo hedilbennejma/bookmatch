@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package book;
+
+service BookService {
+  // Ajouter un nouveau livre
+  rpc AddBook(AddBookRequest) returns (Book);
+
+  // Récupérer un livre par ID
+  rpc GetBook(GetBookRequest) returns (Book);
+
+  // Récupérer tous les livres
+  rpc GetAllBooks(Empty) returns (GetAllBooksResponse);
+}
+
+// Message pour ajouter un livre
+message AddBookRequest {
+  string title = 1;
+  string author = 2;
+  string genre = 3;
+  string description = 4;
+  int32 publishedYear = 5;
+}
+
+// Message pour demander un livre par ID
+message GetBookRequest {
+  string id = 1;
+}
+
+// Message réponse pour la liste des livres
+message GetAllBooksResponse {
+  repeated Book books = 1;
+}
+
+// Modèle Livre
+message Book {
+  string id = 1;
+  string title = 2;
+  string author = 3;
+  string genre = 4;
+  string description = 5;
+  int32 publishedYear = 6;
+}
+
+// Message vide pour GetAllBooks
+message Empty {}
